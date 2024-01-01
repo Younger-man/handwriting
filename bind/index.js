@@ -11,6 +11,8 @@ Function.prototype.newBind = function (ctx) {
   if (typeof this !== 'function') {
     throw new Error('Function.prototype.bind - what is trying to be bound is not callable');
   }
+  // eslint-disable-nect-line @ts-ignore
+  // eslint-disable-next-line @typescript-eslint/no-this-alias
   const fn = this;
   const args = [...arguments].slice(1);
   return function () {
