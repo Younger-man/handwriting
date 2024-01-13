@@ -20,3 +20,26 @@ Function.prototype.newBind = function (ctx) {
     return fn.apply(ctx, args.concat(innerArgs));
   };
 };
+
+/**
+ * deepClone map  为了解决循环引用
+ */
+const isArray = (target) => {
+  return Object.prototype.toString.call(target) === '[object Array]';
+};
+
+function deepClone(target, map = new Map()) {
+  if (typeof target === 'object') {
+    let clone = isArray(target) ? [] : {};
+    if (map.get(target)) {
+      return map.get(target);
+    } else {
+      map.set(target, clone);
+    }
+    for (let key in target) {
+      clone[key] = deepClone(target[key], map);
+    }
+  } else {
+    return target;
+  }
+}
