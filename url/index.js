@@ -13,3 +13,5 @@ const getUrlParams = (url) => {
 
 const url = 'http://sample.com/?a=1&b=2&c=xx&d=2#hash';
 console.log(url, getUrlParams(url));
+
+// const reg = /([^?=&]+)=([^&])/g;
