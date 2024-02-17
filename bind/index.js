@@ -28,7 +28,7 @@ const isArray = (target) => {
   return Object.prototype.toString.call(target) === '[object Array]';
 };
 
-function deepClone(target, map = new Map()) {
+export function deepClone(target, map = new Map()) {
   if (typeof target === 'object') {
     let clone = isArray(target) ? [] : {};
     if (map.get(target)) {
