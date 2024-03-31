@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./favicon.ico" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script type="module">
+      import { reactive } from './reactive.js';
+      import { effect } from './effect.js';
+      const data = {
+        value: '1',
+      };
+      const obj = reactive(data);
+      effect(() => {
+        document.body.innerHTML = obj.value;
+      });
+      setTimeout(() => {
+        console.log('setTime');
+        obj.value = 2;
+      }, 2000);
+    </script>
+  </body>
+</html>

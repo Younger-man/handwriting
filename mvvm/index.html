@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>实现一个简单的双向绑定</h1>
+    <input type="text" id="input" />
+    <span>hello</span>
+    <script>
+      const input = document.getElementById('input');
+      const span = document.querySelector('span');
+      const obj = {};
+      const newObj = new Proxy(obj, {
+        get(target, key) {
+          return target[key];
+        },
+        set(target, key, value) {
+          input.value = value;
+          span.innerText = value;
+          return true;
+        },
+      });
+      input.addEventListener('input', (e) => {
+        newObj.name = e.target.value;
+      });
+      setTimeout(() => {
+        newObj.name = 'hello world';
+      }, 2000);
+    </script>
+  </body>
+</html>

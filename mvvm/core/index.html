@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link rel="stylesheet" href="./favicon.ico" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module">
+      import { reactive } from './reactive.js';
+      import { effect } from './effect.js';
+      const data = {
+        value: '1',
+        name: 'om',
+      };
+      const obj = reactive(data);
+
+      effect(() => {
+        obj.value++;
+        document.body.innerText = obj.value;
+      });
+
+      setTimeout(() => {
+        obj.value++;
+        obj.name = 'zs';
+      }, 2000);
+    </script>
+  </body>
+</html>

@@ -17,3 +17,18 @@ export function createNew(ctx) {
    */
   return typeof res === 'object' ? res : obj;
 }
+
+// 另一种实现
+/**
+ * 第一个参数是其构造函数
+ * 后续的参数是构造函数的参数
+ * @returns
+ */
+
+export function createNew2() {
+  const obj = new Object();
+  const ctx = [].shift.call(arguments);
+  obj.__proto__ = ctx.prototype;
+  const res = ctx.apply(obj, arguments);
+  return typeof res === 'object' ? res : obj;
+}
